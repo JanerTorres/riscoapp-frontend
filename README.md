@@ -1,5 +1,5 @@
 # Submódulo frontend de la aplicación RiscoApp
-Repositorio principal RiscoApp alojado en `https://github.com/JanerTorres/RiscoApp.git`
+Repositorio principal RiscoApp alojado en https://github.com/JanerTorres/RiscoApp.git
 
 # Getting Started with Create React App
 
