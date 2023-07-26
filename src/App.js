@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import RiscoForm from './RiscoForm';
+import RiscoResults from './RiscoResults';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const [elementosSeleccionados, setElementosSeleccionados] = useState([]); 
+
+  const handleFormSubmit = (caloriasMinimas, pesoMaximo) => {
+    axios.get("http://localhost:8080/riscoapp/element/find?weight="+ pesoMaximo +"&calories="+ caloriasMinimas)
+      .then((response) => {
+        setElementosSeleccionados(response.data);
+      })
+      .catch((error) => {
+        console.error('Error al obtener los resultados:', error);
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Funcionalidad de Risco</h1>
+      <RiscoForm onSubmit={handleFormSubmit} />
+      <RiscoResults elementosSeleccionados={elementosSeleccionados} />
     </div>
   );
-}
+};
 
 export default App;
